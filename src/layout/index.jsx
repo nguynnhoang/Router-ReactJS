@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Collapse, Navbar, NavbarToggler, Nav, NavItem, NavbarText } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, Nav, NavItem, NavbarText, Button } from 'reactstrap';
 import { Outlet, Link, useNavigate } from 'react-router-dom'
 import Posts from '../pages/PostsPage';
 import HomePage from '../pages/HomePage';
@@ -32,9 +32,9 @@ const Layout = ({user}) => {
               user
                 ? <NavbarText>{user && user.username}</NavbarText>
                 : <div>
-                  <Link to='login' className='btn btn-primary' onClick={onNavigateToLoginPage}>
+                  <Button color='primary' onClick={onNavigateToLoginPage}>
                     Login
-                  </Link>
+                  </Button>
                 </div>
             }
             

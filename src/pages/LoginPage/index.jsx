@@ -2,9 +2,12 @@ import { useEffect } from "react"
 import { useState } from "react"
 import { Button, Card, CardBody, Col, Container, Form, Input, Row, Spinner } from "reactstrap"
 import axios from 'axios'
+import { userKey } from "../../variables"
+import { useNavigate } from "react-router-dom"
 
 const LoginPage = ({onChangeUser}) => {
     const [userInfo, setUserInfo] = useState({})
+    const navigate = useNavigate()
     const [users, setUsers] = useState({
         isLoading: false,
         data: []
@@ -20,7 +23,16 @@ const LoginPage = ({onChangeUser}) => {
 
     const onSubmitUser = (event) => {
         event.preventDefault()
-        onChangeUser(userInfo)
+
+        if (userInfo) {
+            //successfully login
+            //store in local storage
+            //back to home page
+            localStorage.setItem(userKey, JSON.stringify(userInfo))
+            onChangeUser(userInfo)
+            navigate('/')
+        }
+        
     }
 
     useEffect(() => {
